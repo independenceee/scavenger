@@ -1,4 +1,9 @@
 {
+  "scripts": {
+    "challenge": "bun run src/challenge/index.ts",
+    "wallet": "bun run src/wallet/index.ts"
+  },
+  
   "dependencies": {
     "@emurgo/cardano-serialization-lib-browser": "^15.0.1",
     "@emurgo/cardano-serialization-lib-nodejs": "^15.0.1",

@@ -48,13 +48,12 @@ for(let index = Number(process.env.ACCOUNT_INDEX_START); index < (Number(process
         .from(paymentKey.to_public().to_raw_key().as_bytes())
         .toString("hex");
 
-    // console.log("Account:", index);
-    // console.log("Address:", address);
-    // console.log("Public Key:", pubKeyHex);
-    // console.log("Signature:", signature.signature);
+    console.log("Account:", index);
+    console.log("Address:", address);
+    console.log("Public Key:", pubKeyHex);
+    console.log("Signature:", signature.signature);
 
     const { data } = await axios.post(`${process.env.BASE_URL}/register/${address}/${signature.signature}/${pubKeyHex}`, {});
-    console.log(data);
 
     json[address] = {
         registration_receipt: {
