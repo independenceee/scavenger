@@ -31,6 +31,7 @@ for(let index = Number(process.env.ACCOUNT_INDEX_START); index < (Number(process
 
    
     total += Number(data?.local?.night_allocation) / 1_000_000;
+    console.log(index + " = " +Number(data?.local?.night_allocation) / 1_000_000)
     json.push({
         account_index: index,
         address: address,

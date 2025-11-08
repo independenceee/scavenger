@@ -1,7 +1,8 @@
 {
   "scripts": {
     "challenge": "bun run src/challenge/index.ts",
-    "wallet": "bun run src/wallet/index.ts"
+    "wallet": "bun run src/wallet/index.ts",
+    "donate": "bun run src/donate/index.ts"
   },
   
   "dependencies": {
