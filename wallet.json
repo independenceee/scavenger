@@ -2,152 +2,152 @@
     {
         "account_index": 0,
         "address": "addr1qy4nu3jnjdwjqn8mpswevznfzlrz2usr7vhx7qfae80wz9ckxgfy9577jj4nk9hju63c43fz5jeufzzrasp7tccc57hsshwz70",
-        "night": 213.717572
+        "night": 234.71388
     },
     {
         "account_index": 1,
         "address": "addr1q8ml0kycnxspq65hn4ek0l4vqzh369825aq92lp9jk7lj77gw4e44cs646xt0l247uessvqmjvvt8zhsedgpffxa8kts4krjcg",
-        "night": 206.077078
+        "night": 225.302122
     },
     {
         "account_index": 2,
         "address": "addr1q996vc0j5aw6837wer0eu58z6g83c65zfg3tdk6420gu03rnyg5smm4qhqtskhqknppl4a52yrccw7djlvhxtlwdnfuqmt4hvg",
-        "night": 209.338421
+        "night": 230.334729
     },
     {
         "account_index": 3,
         "address": "addr1q9dyce0e2ckmucwhvq3yx4gj8fmjmqjksxxqpq9nmucqe86kj3jaztdhmfw5ake67qkw4ern34dn862k4jy5562gcw2s63gm89",
-        "night": 201.019155
+        "night": 223.722012
     },
     {
         "account_index": 4,
         "address": "addr1q9s69zgmpa7tq2vt932yl02vhnetallhk48rhpjjzcemdrw0krtlhgvp2jermjwnqwz9tuumufm35jnxf5wd2p329whqmcz3f0",
-        "night": 206.484915
+        "night": 226.595591
     },
     {
         "account_index": 5,
         "address": "addr1qxnnwwv8sgmxav4azzc6qv6q66nfcckrqwhvyuef9w2r49p89hw5c3euwj6zkhqa4wcxj5qhwh76tslqphfzy46fl32stveee2",
-        "night": 205.223376
+        "night": 221.856239
     },
     {
         "account_index": 6,
         "address": "addr1q934k0hzswgx0s9hw4x8ljvv79zg80q3f92mkqhntxuj7ztn744sxqf2x0ksew4zsesle6gr5dad6d3sx4zphck7602q708mfc",
-        "night": 203.172039
+        "night": 218.91927
     },
     {
         "account_index": 7,
         "address": "addr1qy8as66j2jqrgc93mw9haumy3gmeszrxmedgesj55qwn4nf3tkys9dvz3pr7mqyfwnaf5gl769g5uy9t8sa89mftmjesypqh3t",
-        "night": 200.41099
+        "night": 217.043853
     },
     {
         "account_index": 8,
         "address": "addr1q9awym7g68mwpsm2ghe596ahczkzhhff9kacd9r2nuref4ya4ar4u5h9tqsv8vx4tk8gzmcffjdq9yul4uxvf856s2hs3vymf6",
-        "night": 200.642796
+        "night": 216.390027
     },
     {
         "account_index": 9,
         "address": "addr1qyj0f97xhha4f4zssx3grps5gzqx7l8yl8uwn23cxw8ryekldq6vw7qqv29dna3fqfkndz0j4ljm6tlgp0tgyn38vuxs4vqxgl",
-        "night": 199.534885
+        "night": 218.759929
     },
     {
         "account_index": 10,
         "address": "addr1qyd94lxwtnn76uwqk6a007m36hxhyuw97mzjxpy3u89e44w0zzh6k4j6s8julmy9jev0khf9zd6ehtxqmxpgvvnr8anq5m2nn8",
-        "night": 193.402696
+        "night": 208.264295
     },
     {
         "account_index": 11,
         "address": "addr1qxln05pvxzhxp8grgcuvn7rcrqatxgk7elhh4hwcyjqhj42pu74smp5uxfn8rmp46rvdnzt05392dgpa6tldd38mfwmssp5dkc",
-        "night": 194.999496
+        "night": 211.632359
     },
     {
         "account_index": 12,
         "address": "addr1q908yg8wplak8q4kmj24674v75ng6zjyd68l47s0dumak5zy89dhrayz9hknwrhcx3sy0htqxmrrxejj0e5z08jpwnrqxq9dvr",
-        "night": 192.893312
+        "night": 209.526175
     },
     {
         "account_index": 13,
         "address": "addr1qx0u7xk3q883qaj0fuj8ufe5awhf4cfddxuaqehcqnyz8vw6ctcys0fkfhepzgd2d7xjkgpuad284s3vlup4frss36aqw30uxw",
-        "night": 189.451437
+        "night": 208.676481
     },
     {
         "account_index": 14,
         "address": "addr1q98xq4vpdun2mdfjy8w6spzyq26ptzmu7k6zl20h6m9qzxtpdv3tj72lrryay7um8vzf43z64kz5phasmwl237yje89sjw0wu6",
-        "night": 192.670581
+        "night": 209.303444
     },
     {
         "account_index": 15,
         "address": "addr1q8hkyv48uzg5xd6w3vhfyryuemlkgz09waxn3yflfarvr8gy4shkujkernyuw6s07tnezr3vsyrrkcgsz5vwuh3n4drsss2g50",
-        "night": 175.986095
+        "night": 192.618958
     },
     {
         "account_index": 16,
         "address": "addr1q82ewer8h47j3mtakj9uy84xgfs0e5j5p4vmra6xe2c6jrh3f40x55adsjhzvfss273sn5ssmdkr3ws0ehg6tamq9qkqjmhg30",
-        "night": 165.766167
+        "night": 182.39903
     },
     {
         "account_index": 17,
         "address": "addr1qy06a9qnfxar3ce37cdvrtusnehevlvrjyc3n8cn3tpn776lx54adjpq5a82gwkg6s87tpsk9krukuur6kwhvgl9j26su9r69r",
-        "night": 169.615007
+        "night": 186.24787
     },
     {
         "account_index": 18,
         "address": "addr1q9kxpvrn0nrfpr4w98mfn65umkm8pyls6numley29ale2kry6hydy9ssaf70qcj2hfr9x7fpk8000n9pv8jtlmk9rtyqjef6fx",
-        "night": 163.497377
+        "night": 182.722421
     },
     {
         "account_index": 19,
         "address": "addr1qxzmgh8e8dgan760euhuu9dgdyyhc4zhw38hqgps9a6er7ltvjy65xmalyj3un9dqmp7ksxlvlk35fdkvnfsj34q32vqvm9d6t",
-        "night": 160.551222
+        "night": 179.776266
     },
     {
         "account_index": 20,
         "address": "addr1q9hs3jz7k47p4wu4sre95kyufuqr2vh470rrtx34pc3s67tylncadtw03m8szh50q9gjssy9s3m8tj5x59xfgayyh5qq9v0xx4",
-        "night": 145.527487
+        "night": 162.16035
     },
     {
         "account_index": 21,
         "address": "addr1qy353yeurpevcjl6cyvq857cawgry5udxf9xjdzv6h95a5uaajhgyp8f09vs5mwflkvtzgqte0ygzy36vd44hvl70hwqqsh8cc",
-        "night": 138.567153
+        "night": 157.792197
     },
     {
         "account_index": 22,
         "address": "addr1qyw2n0ekdzt8c4z2sn89khjyqar8te7adesjqha8y4fzddvdpdk6df8mrhgs2vh06x0xeckx6t8uewqc2vdj6zh553sq540rwy",
-        "night": 142.935306
+        "night": 162.16035
     },
     {
         "account_index": 23,
         "address": "addr1qy7vzquv7ckl3j57w00y3x22az2c74svru4zqm3w3mm45y2as4grwf0yz0hcsuj0dh8gj8snt4klw7avsqwz07fcslesn7pfw0",
-        "night": 141.523031
+        "night": 160.748075
     },
     {
         "account_index": 24,
         "address": "addr1q9aqmgv0kqd9q7dn9f8v0rwfrmmugduy83752y08dt8d80yrfx83dpljdjjjx7avpusltmdl7ewlurnfl5maa5jmdcjqnkvx5s",
-        "night": 138.567153
+        "night": 157.792197
     },
     {
         "account_index": 25,
         "address": "addr1q97erkjkg7ndd3ks67ru40k3h0e3zxc92ypg9hh3tfl227pr4g0gdjgdl3ymr4k276l3amshnslzfjpm5f3v8hfkn4wsyh46js",
-        "night": 87.540436
+        "night": 104.994216
     },
     {
         "account_index": 26,
         "address": "addr1qxrwpk2022kxv50umzqp9llgu4nmz7lll6pz0533t0w9tuq2ztdttfm30f25dm0f6wsucff0p64skn983d627c4wsapqxctvla",
-        "night": 90.345625
+        "night": 107.799405
     },
     {
         "account_index": 27,
         "address": "addr1q908zug8qjvsv82x9m7uzqm2lzqweqws90chlsns0ax5m3mx5cvhhue5m82a8hf22rvjl7423kxp3ph8y4yfjsyr64ys50s5lv",
-        "night": 75.94873
+        "night": 92.516878
     },
     {
         "account_index": 28,
         "address": "addr1q9xz03l8f82akv2t8859gtee80r3sn9th3rjj5gdzjw8hyamj20uq5umjmud2qka79460kn7z2kqfftgu4rrwp72mg6qts2l36",
-        "night": 57.382083
+        "night": 71.35805
     },
     {
         "account_index": 29,
         "address": "addr1q8fv5nnnu2239k5fp77nprjthddxv4sqvyef93ph6feccqw705jkgexpd0g0l7hhzzf7mdggf84naxpyr26mvl92d94q7yesq2",
-        "night": 53.816099
+        "night": 67.792066
     },
     {
         "account_index": 30,
