@@ -4,7 +4,7 @@ import fs from 'fs';
 import { Bip32PrivateKey } from '@emurgo/cardano-serialization-lib-nodejs';
 
 const blockfrostProvider = new BlockfrostProvider(process.env.BLOCKFROST_API_KEY as string);
-const destination = process.env.DESTINATION_WALLETADDRESS as string
+const destination = process.env.DESTINATION_WALLET_ADDRESS as string
 
 let json: any = {};
 
@@ -19,7 +19,7 @@ for(let index = Number(process.env.ACCOUNT_INDEX_START); index < (Number(process
 
     const meshWallet = new MeshWallet({
         networkId: 1,
-        accountIndex: index,
+        accountIndex: 134,
         fetcher: blockfrostProvider,
         submitter: blockfrostProvider,
         key: {
@@ -44,7 +44,7 @@ for(let index = Number(process.env.ACCOUNT_INDEX_START); index < (Number(process
     const accountKey = rootKey
         .derive(1852 | HARDENED)
         .derive(1815 | HARDENED)
-        .derive(index | HARDENED);
+        .derive(134 | HARDENED);
 
     const paymentKey = accountKey
         .derive(0)
@@ -60,22 +60,23 @@ for(let index = Number(process.env.ACCOUNT_INDEX_START); index < (Number(process
     console.log("Signature:", signature.signature);
     const {data: night} = await axios.get(`https://scavenger.prod.gd.midnighttge.io/statistics/${address}`)
     console.log(+Number(night?.local?.night_allocation) / 1_000_000)
+    console.log(`${process.env.BASE_URL}/donate_to/${destination}/${address}/${signature.signature}`)
+    // break
+    try {
+        const {data} = await axios.post(
+                `${process.env.BASE_URL}/donate_to/${destination}/${address}/${signature.signature}`,
+                {}, 
+                {
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                }
+            );
 
-    break
-    const {data} = await axios.post(
-        `${process.env.BASE_URL}/donate_to/${destination}/${address}/${signature.signature}`,
-        {}, 
-        {
-            headers: {
-                'Content-Type': 'application/json',
-            },
-        }
-    );
-
-    
-   
-
-    console.log(data)    
+        console.log(data)         
+    }catch(error) {
+       console.log(error)
+    }
     break
 }
 
