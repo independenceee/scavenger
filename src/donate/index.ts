@@ -6,7 +6,6 @@ import { Bip32PrivateKey } from '@emurgo/cardano-serialization-lib-nodejs';
 const blockfrostProvider = new BlockfrostProvider(process.env.BLOCKFROST_API_KEY as string);
 const destination = process.env.DESTINATION_WALLET_ADDRESS as string
 
-let json: any = {};
 
 const HARDENED = 0x80000000;
 const mnemonic = process.env.MNEMONIC!;
@@ -19,7 +18,7 @@ for(let index = Number(process.env.ACCOUNT_INDEX_START); index < (Number(process
 
     const meshWallet = new MeshWallet({
         networkId: 1,
-        accountIndex: 134,
+        accountIndex: index,
         fetcher: blockfrostProvider,
         submitter: blockfrostProvider,
         key: {
@@ -30,11 +29,6 @@ for(let index = Number(process.env.ACCOUNT_INDEX_START); index < (Number(process
     
     const address = await meshWallet.getChangeAddress();
 
-    // const signature  = await meshWallet.signData(
-    //     Buffer.from(`Assign accumulated Scavenger rights to: ${destination}`).toString("utf-8")
-    // );
-
-
     const message = `Assign accumulated Scavenger rights to: ${destination}`;
     const messageHex = Buffer.from(message, "utf8").toString("hex");
     const signature = await meshWallet.signData(messageHex);
@@ -44,7 +38,7 @@ for(let index = Number(process.env.ACCOUNT_INDEX_START); index < (Number(process
     const accountKey = rootKey
         .derive(1852 | HARDENED)
         .derive(1815 | HARDENED)
-        .derive(134 | HARDENED);
+        .derive(index | HARDENED);
 
     const paymentKey = accountKey
         .derive(0)
@@ -61,7 +55,6 @@ for(let index = Number(process.env.ACCOUNT_INDEX_START); index < (Number(process
     const {data: night} = await axios.get(`https://scavenger.prod.gd.midnighttge.io/statistics/${address}`)
     console.log(+Number(night?.local?.night_allocation) / 1_000_000)
     console.log(`${process.env.BASE_URL}/donate_to/${destination}/${address}/${signature.signature}`)
-    // break
     try {
         const {data} = await axios.post(
                 `${process.env.BASE_URL}/donate_to/${destination}/${address}/${signature.signature}`,
@@ -77,9 +70,7 @@ for(let index = Number(process.env.ACCOUNT_INDEX_START); index < (Number(process
     }catch(error) {
        console.log(error)
     }
-    break
 }
 
 
-fs.writeFileSync("./challenges.json", JSON.stringify(json, null, 4));
-console.log("✅ File wallets.json đã tạo thành công!");
+console.log("✅ Donate to Successfully!");
