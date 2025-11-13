@@ -1,6 +1,5 @@
 import axios from 'axios';
 import { BlockfrostProvider, MeshWallet, mnemonicToEntropy } from "@meshsdk/core";
-import fs from 'fs';
 import { Bip32PrivateKey } from '@emurgo/cardano-serialization-lib-nodejs';
 
 const blockfrostProvider = new BlockfrostProvider(process.env.BLOCKFROST_API_KEY as string);
