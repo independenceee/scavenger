@@ -150,6 +150,12 @@ export default function Home() {
     enabled: !!address,
   });
 
+  useEffect(() => {
+    if (error) {
+      toast.error(`Wallet address ${address} is not registered`);
+    }
+  }, [error, address]);
+
   const handleDonate = async () => {
     if (browserWallet && donateAddress && address) {
       try {
@@ -169,6 +175,17 @@ export default function Home() {
         });
 
         const result = await res.json();
+
+        console.log(result);
+
+        if (
+          result?.details?.statusCode === 400 ||
+          result?.details?.statusCode === 404 ||
+          result?.details?.statusCode === 409
+        ) {
+          toast.error(result?.details?.message || "Donation request failed.");
+          return;
+        }
 
         toast.success(
           "Consolidation request submitted. Check transactions/receipts for details."
@@ -544,10 +561,14 @@ export default function Home() {
             <div className="border-t border-gray-200 dark:border-gray-700 p-6">
               <button
                 onClick={handleDonate}
+                disabled={!error}
                 className={`w-full py-3.5 rounded font-medium text-sm transition-all flex items-center justify-center gap-2 ${
                   donateAddress
                     ? "bg-indigo-600 hover:bg-indigo-700 text-white"
                     : "bg-gray-300 dark:bg-gray-700 text-gray-500 cursor-not-allowed"
+                } ${
+                  error &&
+                  "bg-gray-300 dark:bg-gray-700 text-gray-500 cursor-not-allowed"
                 }`}
               >
                 <Sparkles className="w-4 h-4" />
