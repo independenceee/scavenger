@@ -39,10 +39,12 @@ export const useWallet = create<WalletStoreType>((set, get) => ({
         wallet: wallet,
         address: address,
       });
+      toast.success("Connect Wallet Successfully !");
     } catch (error) {}
   },
 
   disconnect: async () => {
     set({ browserWallet: null!, wallet: null! });
+    toast.success("Disconnect Wallet Successfully !");
   },
 }));

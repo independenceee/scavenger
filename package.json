@@ -6,7 +6,10 @@
     "dev": "next dev -p 3500",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "wallet": "bun run cli/wallet.ts",
+    "donate": "bun run cli/donate.ts",
+    "challenge": "bun run cli/challenge.ts"
   },
   "dependencies": {
     "@emurgo/cardano-serialization-lib-nodejs": "^15.0.3",

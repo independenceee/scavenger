@@ -21,6 +21,7 @@ import { images } from "@/public/images";
 import { useWallet } from "@/hooks/use-wallet";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 const formatTime = (seconds: number) => {
   const d = Math.floor(seconds / 86400);
@@ -59,10 +60,29 @@ export default function Home() {
   const { d, h, m, s } = formatTime(countdown);
 
   const steps = [
-    { id: 1, title: "Choose a Destination address", done: true },
-    { id: 2, title: "Accept Token End User Terms", done: false },
-    { id: 3, title: "Solve cryptographic challenges", done: false },
-    { id: 4, title: "View your submitted solutions", done: false },
+    { id: 1, title: "Connect Wallet", done: false },
+    {
+      id: 2,
+      title: "Input Destination Address You Want To Donate",
+      done: false,
+    },
+    {
+      id: 3,
+      title: "Sign The Message To Authorize Donation",
+      done: false,
+    },
+
+    {
+      id: 4,
+      title: "Donate Night To Destination Address Successfully",
+      done: false,
+    },
+
+    {
+      id: 5,
+      title: "Disconnect Wallet ",
+      done: false,
+    },
   ];
 
   // connect wallet handlers
@@ -116,38 +136,46 @@ export default function Home() {
     setTimeout(() => setCopied(false), 2000);
   };
 
-  // const {
-  //   data: night,
-  //   isLoading,
-  //   error,
-  // } = useQuery({
-  //   queryKey: ["night", address],
-  //   queryFn: async () => {
-  //     if (!address) throw new Error("No address");
-  //     const res = await axios.get(
-  //       `https://scavenger.prod.gd.midnighttge.io/statistics/${address}`
-  //     );
-  //     return res.data;
-  //   },
-  //   enabled: !!address,
-  // });
+  const {
+    data: night,
+    isLoading,
+    error,
+  } = useQuery({
+    queryKey: ["night", address],
+    queryFn: async () => {
+      if (!address) throw new Error("No address");
+      const res = await axios.get(`/api/statistics?address=${address}`);
+      return res.data;
+    },
+    enabled: !!address,
+  });
 
   const handleDonate = async () => {
-    if (browserWallet) {
-      const message = `Assign accumulated Scavenger rights to: ${donateAddress}`;
-      const messageHex = Buffer.from(message, "utf8").toString("hex");
-      const signature = await browserWallet.signData(messageHex);
-      const { data } = await axios.post(
-        `https://scavenger.prod.gd.midnighttge.io/donate_to/${donateAddress}/${address}/${signature.signature}`,
-        {},
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
+    if (browserWallet && donateAddress && address) {
+      try {
+        const message = `Assign accumulated Scavenger rights to: ${donateAddress}`;
+        const messageHex = Buffer.from(message, "utf8").toString("hex");
 
-      console.log(data);
+        const signature = await browserWallet.signData(messageHex);
+
+        const res = await fetch("/api/donate", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            donateAddress,
+            userAddress: address,
+            signature: signature.signature,
+          }),
+        });
+
+        const result = await res.json();
+
+        toast.success(
+          "Consolidation request submitted. Check transactions/receipts for details."
+        );
+      } catch (error: any) {
+        console.error("Lỗi:", error);
+      }
     }
   };
 
@@ -264,8 +292,20 @@ export default function Home() {
           {browserWallet && (
             <div className="border-t border-gray-200 dark:border-gray-700 p-6">
               <button
+                type="button"
                 onClick={disconnect}
-                className="w-full py-3 rounded font-medium border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-400  flex items-center cursor-pointer justify-center gap-2"
+                className={`
+        w-full flex items-center justify-center gap-2
+        py-3 px-4 rounded-lg font-medium text-sm
+        bg-red-50 dark:bg-red-900/20
+        text-red-600 dark:text-red-400
+        border border-red-200 dark:border-red-800
+        hover:bg-red-100 dark:hover:bg-red-900/30
+        focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-gray-900
+        transition-all duration-200
+        shadow-sm
+      `}
+                aria-label="Disconnect wallet"
               >
                 <Wallet className="w-4 h-4" />
                 Disconnect Wallet
@@ -285,7 +325,10 @@ export default function Home() {
 
             <div className="flex-1 p-6 overflow-y-auto space-y-6">
               <p className="text-sm text-gray-600 dark:text-gray-400">
-                Tell us which Cardano wallet you would like to connect with
+                Connect a Cardano wallet to view your NIGHT allocation and
+                consolidate accumulated NIGHT into a single destination wallet.
+                After connecting, choose the destination wallet and authorize
+                the consolidation action.
               </p>
 
               {/* Installed Wallets */}
@@ -413,18 +456,32 @@ export default function Home() {
                   <div className="flex justify-between items-center border-b border-gray-200 dark:border-gray-700 pb-4">
                     <div>
                       <span className="block text-xs text-gray-500 dark:text-gray-400 mb-1">
-                        Your estimated claim:
+                        Estimated NIGHT to consolidate:
                       </span>
                       <span className="text-base font-medium text-gray-900 dark:text-white">
-                        344.7761 NIGHT
+                        {isLoading ? (
+                          <span className="animate-pulse">Loading...</span>
+                        ) : night?.local?.night_allocation ? (
+                          `${(
+                            Number(night.local.night_allocation) / 1_000_000
+                          ).toFixed(4)} NIGHT`
+                        ) : (
+                          "0.0000 NIGHT"
+                        )}
                       </span>
                     </div>
                     <div className="text-right">
                       <span className="block text-xs text-gray-500 dark:text-gray-400 mb-1">
-                        Your estimated share:
+                        Estimated share of the pool:
                       </span>
                       <span className="text-base font-medium text-gray-900 dark:text-white">
-                        0.00005464%
+                        {isLoading ? (
+                          <span className="animate-pulse">...</span>
+                        ) : night?.estimatedShare ? (
+                          `${night.estimatedShare}%`
+                        ) : (
+                          "0.0000%"
+                        )}
                       </span>
                     </div>
                   </div>
@@ -432,14 +489,14 @@ export default function Home() {
                   {/* Destination Address Input */}
                   <div className="space-y-2">
                     <label className="block text-xs font-medium text-gray-700 dark:text-gray-300">
-                      Destination Address
+                      Destination Wallet (consolidation target)
                     </label>
                     <div className="relative">
                       <input
                         type="text"
                         value={donateAddress}
                         onChange={(e) => setDonateAddress(e.target.value)}
-                        placeholder="addr1q..."
+                        placeholder="addr1q... (destination wallet address)"
                         className="w-full px-4 py-3 pr-12 text-sm border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition"
                       />
                       {donateAddress && (
@@ -471,12 +528,15 @@ export default function Home() {
               {/* What happens next */}
               <div className="border-t border-gray-200 dark:border-gray-700 pt-6">
                 <h3 className="text-lg font-semibold mb-3 text-gray-900 dark:text-white">
-                  What happens next?
+                  Contact Us?
                 </h3>
                 <p className="text-xs text-gray-600 dark:text-gray-400">
-                  Shortly after the Scavenger Mine ends, the Redemption period
-                  will start, and you'll be able to redeem your claimed
-                  allocation as it thaws via the NIGHT Claim Portal.
+                  After the Scavenger Mine ends the system will begin
+                  consolidation: registered wallets' NIGHT allocations will be
+                  aggregated and batch-transferred to the destination wallet you
+                  provide. Consolidation uses signed authorizations and batched
+                  on-chain settlement to minimize fees; you will receive
+                  receipts for each consolidated transfer.
                 </p>
               </div>
             </div>
@@ -490,8 +550,8 @@ export default function Home() {
                     : "bg-gray-300 dark:bg-gray-700 text-gray-500 cursor-not-allowed"
                 }`}
               >
-                <Zap className="w-4 h-4" />
-                Donate
+                <Sparkles className="w-4 h-4" />
+                Donate Night
               </button>
             </div>
           </main>
