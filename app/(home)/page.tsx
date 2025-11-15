@@ -22,6 +22,7 @@ import { useWallet } from "@/hooks/use-wallet";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { isNil } from "lodash";
 
 const formatTime = (seconds: number) => {
   const d = Math.floor(seconds / 86400);
@@ -561,7 +562,7 @@ export default function Home() {
             <div className="border-t border-gray-200 dark:border-gray-700 p-6">
               <button
                 onClick={handleDonate}
-                disabled={!error}
+                disabled={!isNil(error) || !donateAddress}
                 className={`w-full py-3.5 rounded font-medium text-sm transition-all flex items-center justify-center gap-2 ${
                   donateAddress
                     ? "bg-indigo-600 hover:bg-indigo-700 text-white"
