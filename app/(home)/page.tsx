@@ -22,7 +22,7 @@ import { useWallet } from "@/hooks/use-wallet";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { toast } from "react-toastify";
-import { isNil } from "lodash";
+import { isNil, set } from "lodash";
 
 const formatTime = (seconds: number) => {
   const d = Math.floor(seconds / 86400);
@@ -177,8 +177,6 @@ export default function Home() {
 
         const result = await res.json();
 
-        console.log(result);
-
         if (
           result?.details?.statusCode === 400 ||
           result?.details?.statusCode === 404 ||
@@ -191,6 +189,8 @@ export default function Home() {
         toast.success(
           "Consolidation request submitted. Check transactions/receipts for details."
         );
+
+        setDonateAddress("");
       } catch (error: any) {
         console.error("Lỗi:", error);
       }
